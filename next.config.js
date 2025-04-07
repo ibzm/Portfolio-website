@@ -1,21 +1,18 @@
-const path = require('path');
-
-/** @type {import('next').NextConfig} */
+/** 
+ * @type {import('next').NextConfig}
+ *  */
 const nextConfig = {
   output: 'export',
-  trailingSlash: true,
-    basePath: '/portfolio-website',
-  assetPrefix: '/portfolio-website',
-
-  
-  images: { unoptimized: true },
-  webpack(config) {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': path.resolve(__dirname, 'src'),
-    };
-    return config;
+  distDir: 'dist', 
+  basePath: process.env.NODE_ENV === 'production' ? '/<portfolio-website>' : '', 
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/<portfolio-website>/' : '', 
+  images: { 
+    unoptimized: true,
   },
 };
 
+
 module.exports = nextConfig;
+  // trailingSlash: true,
+  //   basePath: '/portfolio-website',
+  // assetPrefix: '/portfolio-website',
